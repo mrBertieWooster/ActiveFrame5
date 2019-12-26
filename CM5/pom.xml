@@ -38,6 +38,7 @@
         <gwt.version>2.7.0</gwt.version>
         <slf4j.version>1.7.2</slf4j.version>
         <solr.version>4.5.1</solr.version>
+	<jacoco.version>0.8.5</jacoco.version>
 
         <sonar.jdbc.url>jdbc:postgresql://169.254.0.55:5432/sonar</sonar.jdbc.url>
         <sonar.host.url>http://sonar.inttrust.ru</sonar.host.url>
@@ -591,6 +592,27 @@
                     <artifactId>properties-maven-plugin</artifactId>
                     <version>1.0-alpha-1</version>
                 </plugin>
+		    
+		<plugin>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>${jacoco.version}</version>
+		<executions>
+			<execution>
+				<goals>
+					<goal>prepare-agent</goal>
+				</goals>
+			</execution>
+			<!-- attached to Maven test phase -->
+			<execution>
+				<id>report</id>
+				<phase>test</phase>
+				<goals>
+					<goal>report</goal>
+				</goals>
+			</execution>
+		</executions>
+	        </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
